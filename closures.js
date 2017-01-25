@@ -14,11 +14,11 @@ var outer = function(){
 closure over the name variable. Invoke outer saving the return value into
 another variable called 'inner'. */
 
-// Code Here
+var inner = outer();
 
 //Once you do that, invoke inner.
 
-//Code Here
+inner();
 
 
 
@@ -47,7 +47,7 @@ var callFriend = function(){
 Create a makeCall function that when invoked logs 'Calling Jake at 435-215-9248'
 in your console. */
 
-  //Code Here
+var makeCall = callFriend();
 
 
 
@@ -66,14 +66,20 @@ in your console. */
 /* Write a function called makeCounter that makes the following code work
 properly. */
 
-//Code Here
+var makeCounter = function() {
+  var counter = 1;
+  function counting() {
+    return counter++;
+  }
+  return counting;
+};
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+   var count = makeCounter();
+   count(); // 1
+   count(); // 2
+   count(); // 3
+   count(); // 4
 
 
 
@@ -97,10 +103,18 @@ the module pattern to achieve this. */
 
 function counterFactory(value) {
 
-  // Code here.
+  var currentValue = value;
 
 
   return {
+    inc: function() {
+      currentValue += 1;
+      return currentValue;
+    },
+    dec: function () {
+      currentValue += 1;
+      return currentValue;
+    },
   }
 }
 
@@ -128,11 +142,16 @@ function motivation(firstname, lastname){
 
   var welcomeText = 'You\'re doing awesome, keep it up ';
 
-  // code message function here.
+  function message = function() {
+    var line = welcomeText + firstname + " " + lastname + ".";
+
+  return line;
+}
+
 
 
   //Uncommment this to return the value of your invoked message function
-  //return message();
+  return message();
 
 }
 
@@ -171,13 +190,14 @@ var module = (function() {
 	// outside our lexical scope
 
   return {
-    // Code here.
+    publicMethod: function(); {
+    return privateMethod();
   };
 
 })();
 
 // Uncomment this after you create your public method
-//   module.publicMethod();
+   module.publicMethod();
 
 
 
@@ -220,7 +240,15 @@ timeOutCounter();
 	#PROBLEM-08
 \******************************************************************************/
 
-var funcArray = [];
+var funcArray = []
+  for(var i = 0; i <= 6; i++) {
+    funcArray.push(arrayEntryFunction(i));
+  }
+  function arrayEntryFunction(num) {
+    return function(){
+      return num;
+    }
+  }
 
 /*
   Make the following code work
